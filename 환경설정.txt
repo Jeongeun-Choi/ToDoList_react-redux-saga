@@ -1,0 +1,15 @@
+설정 방법
+
+1. npm init
+2. npm i react react-dom next
+3. npm i -D nodemon webpack
+4. npm i -D eslint
+5. 뭐 eslintrc 작성;;
+6. npm i eslint-plugin-import eslint-plugin-react eslint-plugin-react-hooks
+7. npm i -g next
+그러고나서 package.json의 scriptsdp 
+"dev": "next",
+"build": "next build",
+"start": "next start" 적음
+
+8. npm run dev해서 실행시키면 끝!
