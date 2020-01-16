@@ -1,11 +1,19 @@
 import React, { useCallback, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Form, Button } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { Form, Button, Input } from 'antd';
 import { MODIFY_TODO_REQUEST } from '../reducers/list';
 
-const ModifyForm = () => {
+const ModifyForm = ({item}) => {
     const dispatch = useDispatch();
+    // const [isClickModify, setClickModify] = useState(false);
     const [modifyText, setModifyText] = useState('');
+    // const { isClickModify } = useSeletor(state => state.list)
+
+    const onClickModify = useCallback((e) => {
+        dispatch({
+            type: CLICK_MODIFY_BUTTON
+        })
+    }, []);
 
     const modifyList = useCallback((id, modifyText) => (e) => {
         e.preventDefault();

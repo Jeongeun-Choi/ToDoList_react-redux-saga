@@ -13,7 +13,7 @@ const NodeBird = ({ Component, store }) => {
     return(
         <Provider store={store}>
             <Head>
-                <title>NodeBird</title>
+                <title>ToDoList</title>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/3.16.2/antd.css" />
             </Head>
             <AppLayout>

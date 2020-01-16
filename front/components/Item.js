@@ -6,12 +6,14 @@ import ModifyForm from './ModifyForm';
 
 const Item = () => {
     const dispatch = useDispatch();
-    const [isClickModify, setClickModify] = useState(false);
-    const { toDoLists, isDeleting } = useSelector(state => state.list);
+    // const [isClickModify, setClickModify] = useState(false);
+    const { toDoLists, isDeleting, isClickModify } = useSelector(state => state.list);
 
     const onClickModify = useCallback((e) => {
-        setClickModify(!isClickModify)
-    });
+        dispatch({
+            type: CLICK_MODIFY_BUTTON
+        })
+    }, []);
 
     const deleteList = (id) => (e) => {
         dispatch({
@@ -30,7 +32,7 @@ const Item = () => {
                 {
                     isClickModify 
                     ? 
-                    <ModifyForm />
+                    <ModifyForm item={item}/>
                     : 
                     <>
                     <Button type="primary" onClick={onClickModify}>수정</Button>

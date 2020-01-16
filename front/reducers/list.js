@@ -5,6 +5,7 @@ import produce from 'immer';
 //삭제 요청, 삭제 성공, 삭제 실패
 
 export const initialState = {
+    isClickModify: false,
     isInputting: false,     //입력 시도중
     inputted: false,        //입력 완료
     inputErrorReason: '',   //입력 실패
@@ -38,6 +39,9 @@ export const MODIFY_TODO_FAILURE = 'MODIFY_TODO_FAILURE';
 export const DELETE_TODO_REQUEST = 'DELETE_TODO_REQUEST';
 export const DELETE_TODO_SUCCESS = 'DELETE_TODO_SUCCESS';
 export const DELETE_TODO_FAILURE = 'DELETE_TODO_FAILURE';
+
+export const CLICK_MODIFY_BUTTON = 'CLICK_MODIFY_BUTTON';
+// export const UNCLICK_MODIFY_BUTTON = 'UNCLICK_MODIFY_BUTTON';
 
 export default (state = initialState, action) => {
     return produce (state, draft => {
@@ -98,6 +102,14 @@ export default (state = initialState, action) => {
                 draft.deleteErrorReason = action.error;
                 break;
             }
+            case CLICK_MODIFY_BUTTON: {
+                !draft.isClickModify;
+                break;
+            }
+            // case UNCLICK_MODIFY_BUTTON: {
+            //     draft.isClickModifyButton = false;
+            //     break;
+            // }
             default:{
                 break;
             }

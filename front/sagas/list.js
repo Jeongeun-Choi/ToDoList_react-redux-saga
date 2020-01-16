@@ -56,6 +56,17 @@ function* deleteList(action) {
 
 function* watchDeleteList() {
     yield takeLatest(DELETE_TODO_REQUEST, deleteList)
+// }
+
+// function* clickModifyButton(){
+//     yield delay(1200);
+//     yield put({
+//         type: CLICK_MODIFY_BUTTON
+//     })
+// }
+
+// function* watchClickModifyButton(){
+//     yield takeLatest(CLICK_MODIFY_BUTTON, clickModifyButton)
 }
 
 export default function* userSaga() {
