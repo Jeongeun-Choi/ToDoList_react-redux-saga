@@ -5,15 +5,7 @@ import { MODIFY_TODO_REQUEST } from '../reducers/list';
 
 const ModifyForm = ({item}) => {
     const dispatch = useDispatch();
-    // const [isClickModify, setClickModify] = useState(false);
     const [modifyText, setModifyText] = useState('');
-    // const { isClickModify } = useSeletor(state => state.list)
-
-    const onClickModify = useCallback((e) => {
-        dispatch({
-            type: CLICK_MODIFY_BUTTON
-        })
-    }, []);
 
     const modifyList = useCallback((id, modifyText) => (e) => {
         e.preventDefault();
@@ -37,7 +29,7 @@ const ModifyForm = ({item}) => {
     return (
         <div>
             <Form onSubmit={modifyList(item.id, modifyText)}>
-                <Input onChange={onChangeListText} value={modifyText}/><Button type="primary" htmlType="submit">확인</Button><Button onClick={onClickModify}>취소</Button>
+                <Input onChange={onChangeListText} value={modifyText}/><Button type="primary" htmlType="submit">확인</Button>
             </Form> 
         </div>
     );

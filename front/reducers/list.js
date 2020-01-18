@@ -5,16 +5,19 @@ import produce from 'immer';
 //삭제 요청, 삭제 성공, 삭제 실패
 
 export const initialState = {
-    isClickModify: false,
-    isInputting: false,     //입력 시도중
-    inputted: false,        //입력 완료
-    inputErrorReason: '',   //입력 실패
-    isModifying: false,     //수정 시도중
-    modified: false,        //수정 성공
-    modifyErrorReason: '',  //수정 실패 사유
-    isDeleting: false,      //삭제 시도중
-    deleted: false,         //삭제 성공
-    deleteErrorReason: '',  //삭제 실패 사유
+    isClickingModify: false,    //수정 버튼 클릭 시도중
+    isClickModify: false,       //수정 버튼 클릭 성공
+    // isCompletingModify: false,  //수정 완료 시도중  
+    // isCompleteModify: false,    
+    isInputting: false,         //입력 시도중
+    inputted: false,            //입력 완료
+    inputErrorReason: '',       //입력 실패
+    isModifying: false,         //수정 시도중
+    modified: false,            //수정 성공
+    modifyErrorReason: '',      //수정 실패 사유
+    isDeleting: false,          //삭제 시도중
+    deleted: false,             //삭제 성공
+    deleteErrorReason: '',      //삭제 실패 사유
     toDoLists: [{
         id: 1,
         text: '자기',
@@ -40,8 +43,13 @@ export const DELETE_TODO_REQUEST = 'DELETE_TODO_REQUEST';
 export const DELETE_TODO_SUCCESS = 'DELETE_TODO_SUCCESS';
 export const DELETE_TODO_FAILURE = 'DELETE_TODO_FAILURE';
 
-export const CLICK_MODIFY_BUTTON = 'CLICK_MODIFY_BUTTON';
-// export const UNCLICK_MODIFY_BUTTON = 'UNCLICK_MODIFY_BUTTON';
+export const CLICK_MODIFY_REQUEST = 'CLICK_MODIFY_REQUEST';
+export const CLICK_MODIFY_SUCCESS = 'CLICK_MODIFY_SUCCESS';
+export const CLICK_MODIFY_FAILURE = 'CLICK_MODIFY_FAILURE';
+
+// export const COMPLETE_MODIFY_REQUEST = 'COMPLETE_MODIFY_REQUEST';
+// export const COMPLETE_MODIFY_SUCCESS = 'COMPLETE_MODIFY_SUCCESS';
+// export const COMPLETE_MODIFY_FAILURE = 'COMPLETE_MODIFY_FAILURE';
 
 export default (state = initialState, action) => {
     return produce (state, draft => {
@@ -54,7 +62,7 @@ export default (state = initialState, action) => {
             case INPUT_TODO_SUCCESS: {
                 draft.isInputting = false;
                 draft.inputted = true;
-                draft.toDoLists.push({id: draft.maxId +1 , text : action.data, isClick: false});
+                draft.toDoLists.push({id: draft.maxId +1 , text : action.data, isClick: false, isDeleting: false});
                 draft.maxId += 1;
                 break;
             }
@@ -75,6 +83,7 @@ export default (state = initialState, action) => {
                 const index = draft.toDoLists.findIndex(v=> v.id === action.data.id);
                 draft.toDoLists[index].text = action.data.modifyText;
                 draft.isLoading = false;
+                draft.isClickModify = false;
                 break;
             }
             case MODIFY_TODO_FAILURE: {
@@ -102,13 +111,22 @@ export default (state = initialState, action) => {
                 draft.deleteErrorReason = action.error;
                 break;
             }
-            case CLICK_MODIFY_BUTTON: {
-                !draft.isClickModify;
+            case CLICK_MODIFY_REQUEST: {
+                draft.isClickingModify = true;
                 break;
             }
-            // case UNCLICK_MODIFY_BUTTON: {
-            //     draft.isClickModifyButton = false;
-            //     break;
+            case CLICK_MODIFY_SUCCESS: {
+                draft.isClickingModify = false;
+                draft.isClickModify = true;
+                break;
+            }
+            case CLICK_MODIFY_FAILURE: {
+                draft.isClickingModify = false;
+                draft.isClickModify = false;
+                break;
+            }
+            // case COMPLETE_MODIFY_REQUEST:{
+
             // }
             default:{
                 break;
