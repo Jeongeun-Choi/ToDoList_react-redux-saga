@@ -4,6 +4,9 @@ import styled from 'styled-components';
 import ToDoListForm from './ToDoListForm';
 import Item from './Item';
 
+const ToDoList = styled.div`
+`;
+
 const Title = styled.h1`
     margin-top: 10px;
     margin-bottom: 10px;
@@ -12,13 +15,13 @@ const Title = styled.h1`
 
 const AppLayout = () => {
     return(
-        <>
+        <ToDoList>
             <Title>
                 정은이가 해야할 일
             </Title>
             <ToDoListForm />
             <Item/>
-        </>
+        </ToDoList>
     );
 };
 

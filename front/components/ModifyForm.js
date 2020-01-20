@@ -29,7 +29,7 @@ const ModifyForm = ({item}) => {
     return (
         <div>
             <Form onSubmit={modifyList(item.id, modifyText)}>
-                <Input onChange={onChangeListText} value={modifyText}/><Button type="primary" htmlType="submit">확인</Button>
+                <Input onChange={onChangeListText} value={modifyText}/><Button type="primary" htmlType="submit">확인</Button><Button>취소</Button>
             </Form> 
         </div>
     );

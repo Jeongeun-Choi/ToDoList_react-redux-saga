@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { List, Button } from 'antd';
 import { DELETE_TODO_REQUEST, CLICK_MODIFY_REQUEST } from '../reducers/list';
@@ -7,7 +7,12 @@ import ModifyForm from './ModifyForm';
 const Item = () => {
     const dispatch = useDispatch();
     // const [isClickModify, setClickModify] = useState(false);
-    const { toDoLists, isClickModify, isDeleting } = useSelector(state => state.list);
+    const { toDoLists, isClickModify } = useSelector(state => state.list);
+    const [isDeleting, setIsDeleting] = useState(false)
+
+    useEffect(()=>{
+        setIsDeleting(false)
+    }, [toDoLists.id]);
 
     const onClickModify = useCallback((e) => {
         dispatch({
