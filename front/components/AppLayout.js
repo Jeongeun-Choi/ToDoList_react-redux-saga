@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ToDoListForm from './ToDoListForm';
-import Item from './Item';
+import Items from './Items';
 
 const ToDoList = styled.div`
 `;
@@ -20,7 +20,7 @@ const AppLayout = () => {
                 정은이가 해야할 일
             </Title>
             <ToDoListForm />
-            <Item/>
+            <Items/>
         </ToDoList>
     );
 };

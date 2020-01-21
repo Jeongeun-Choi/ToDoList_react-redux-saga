@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, Button, Input } from 'antd';
-import { MODIFY_TODO_REQUEST } from '../reducers/list';
+import { MODIFY_TODO_REQUEST, CLICK_MODIFY_REQUEST } from '../reducers/list';
 
 const ModifyForm = ({item}) => {
     const dispatch = useDispatch();
@@ -26,10 +26,16 @@ const ModifyForm = ({item}) => {
         setModifyText(e.target.value)
     }, []);
 
+    const onClickModify = useCallback((e) => {
+        dispatch({
+            type: CLICK_MODIFY_REQUEST
+        })
+    }, []);
+
     return (
         <div>
             <Form onSubmit={modifyList(item.id, modifyText)}>
-                <Input onChange={onChangeListText} value={modifyText}/><Button type="primary" htmlType="submit">확인</Button><Button>취소</Button>
+                <Input onChange={onChangeListText} value={modifyText}/><Button type="primary" htmlType="submit">확인</Button><Button onClick={onClickModify}>취소</Button>
             </Form> 
         </div>
     );

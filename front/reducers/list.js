@@ -7,8 +7,6 @@ import produce from 'immer';
 export const initialState = {
     isClickingModify: false,    //수정 버튼 클릭 시도중
     isClickModify: false,       //수정 버튼 클릭 성공
-    // isCompletingModify: false,  //수정 완료 시도중  
-    // isCompleteModify: false,    
     isInputting: false,         //입력 시도중
     inputted: false,            //입력 완료
     inputErrorReason: '',       //입력 실패
@@ -62,7 +60,7 @@ export default (state = initialState, action) => {
             case INPUT_TODO_SUCCESS: {
                 draft.isInputting = false;
                 draft.inputted = true;
-                draft.toDoLists.push({id: draft.maxId +1 , text : action.data, isClick: false, isDeleting: false});
+                draft.toDoLists.push({id: draft.maxId +1 , text : action.data, isClick: false});
                 draft.maxId += 1;
                 break;
             }
@@ -84,6 +82,7 @@ export default (state = initialState, action) => {
                 draft.toDoLists[index].text = action.data.modifyText;
                 draft.isLoading = false;
                 draft.isClickModify = false;
+                draft.toDoLists.isClick = !draft.toDoLists.isClick
                 break;
             }
             case MODIFY_TODO_FAILURE: {
@@ -117,7 +116,7 @@ export default (state = initialState, action) => {
             }
             case CLICK_MODIFY_SUCCESS: {
                 draft.isClickingModify = false;
-                draft.isClickModify = true;
+                draft.isClickModify = !draft.isClickModify;
                 break;
             }
             case CLICK_MODIFY_FAILURE: {
