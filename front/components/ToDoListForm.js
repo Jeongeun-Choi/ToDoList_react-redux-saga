@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect  } from 'react';
+import React, { useState, useCallback  } from 'react';
 import { Input, Form, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { INPUT_TODO_REQUEST } from '../reducers/list';

@@ -58,11 +58,12 @@ function* watchDeleteList() {
     yield takeLatest(DELETE_TODO_REQUEST, deleteList)
 }
 
-function* clickModifyButton(){
+function* clickModifyButton(action){
     try{
         yield delay(1000);
         yield put({
-            type: CLICK_MODIFY_SUCCESS
+            type: CLICK_MODIFY_SUCCESS,
+            data: action.data
         }) 
     } catch{
         console.error(e);

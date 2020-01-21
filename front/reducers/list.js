@@ -82,7 +82,6 @@ export default (state = initialState, action) => {
                 draft.toDoLists[index].text = action.data.modifyText;
                 draft.isLoading = false;
                 draft.isClickModify = false;
-                draft.toDoLists.isClick = !draft.toDoLists.isClick
                 break;
             }
             case MODIFY_TODO_FAILURE: {
@@ -117,6 +116,11 @@ export default (state = initialState, action) => {
             case CLICK_MODIFY_SUCCESS: {
                 draft.isClickingModify = false;
                 draft.isClickModify = !draft.isClickModify;
+                draft.toDoLists.foreach(v=> {
+                    if(v.id == action.data.id){
+                        v.isClick = !v.isClick;
+                    }
+                });
                 break;
             }
             case CLICK_MODIFY_FAILURE: {
@@ -124,9 +128,6 @@ export default (state = initialState, action) => {
                 draft.isClickModify = false;
                 break;
             }
-            // case COMPLETE_MODIFY_REQUEST:{
-
-            // }
             default:{
                 break;
             }
