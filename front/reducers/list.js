@@ -18,13 +18,11 @@ export const initialState = {
     deleteErrorReason: '',      //삭제 실패 사유
     toDoLists: [{
         id: 1,
-        text: '자기',
-        isClick: false
+        text: '자기'
     },
     {
         id: 2,
-        text: '밥 먹기',
-        isClick: false
+        text: '밥 먹기'
     }],
     maxId :2,
 };
@@ -44,10 +42,6 @@ export const DELETE_TODO_FAILURE = 'DELETE_TODO_FAILURE';
 export const CLICK_MODIFY_REQUEST = 'CLICK_MODIFY_REQUEST';
 export const CLICK_MODIFY_SUCCESS = 'CLICK_MODIFY_SUCCESS';
 export const CLICK_MODIFY_FAILURE = 'CLICK_MODIFY_FAILURE';
-
-// export const COMPLETE_MODIFY_REQUEST = 'COMPLETE_MODIFY_REQUEST';
-// export const COMPLETE_MODIFY_SUCCESS = 'COMPLETE_MODIFY_SUCCESS';
-// export const COMPLETE_MODIFY_FAILURE = 'COMPLETE_MODIFY_FAILURE';
 
 export default (state = initialState, action) => {
     return produce (state, draft => {

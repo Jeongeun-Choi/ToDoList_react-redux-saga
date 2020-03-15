@@ -17,9 +17,7 @@ const ToDoListForm = () => {
                 type: INPUT_TODO_REQUEST,
                 data: inputText
             });
-            setTimeout(() => {
-                setInputText('');
-            } , 1300);
+            setInputText('');
         }
     },[inputText]);
 
@@ -31,7 +29,7 @@ const ToDoListForm = () => {
         <div>
             <Form onSubmit={onSubmitInput}>
                 <Input style={{verticalAlign: 'middle', width: 300, marginLeft: 40}} onChange={onChangeListText} value={inputText}/>     
-                <Button type="primary" htmlType="submit" loading={isInputting}>입력</Button>
+                <Button type="primary" htmlType="submit">입력</Button>
             </Form>     
         </div>
     );

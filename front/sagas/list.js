@@ -3,7 +3,6 @@ import { INPUT_TODO_FAILURE, INPUT_TODO_REQUEST, INPUT_TODO_SUCCESS, MODIFY_TODO
 
 function* inputList(action) {
     try{
-        yield delay(1300);
         yield put({
             type: INPUT_TODO_SUCCESS,
             data : action.data
@@ -22,7 +21,6 @@ function* watchInputList() {
 
 function* modifyList(action) {
     try{
-        yield delay(1300);
         yield put({
             type: MODIFY_TODO_SUCCESS,
             data: action.data
@@ -41,7 +39,6 @@ function* watchModifyList() {
 
 function* deleteList(action) {
     try{
-        yield delay(1300);
         yield put({
             type: DELETE_TODO_SUCCESS,
             data : action.data
@@ -58,31 +55,10 @@ function* watchDeleteList() {
     yield takeLatest(DELETE_TODO_REQUEST, deleteList)
 }
 
-function* clickModifyButton(action){
-    try{
-        yield delay(1000);
-        yield put({
-            type: CLICK_MODIFY_SUCCESS,
-            data: action.data
-        }) 
-    } catch{
-        console.error(e);
-        yield put({
-            type: CLICK_MODIFY_FAILURE
-        })
-    }  
-}
-
-function* watchClickModifyButton(){
-    yield takeLatest(CLICK_MODIFY_REQUEST, clickModifyButton)
-}
-
-
 export default function* userSaga() {
     yield all([
         fork(watchInputList),
         fork(watchModifyList),
-        fork(watchDeleteList),
-        fork(watchClickModifyButton)
+        fork(watchDeleteList)
     ])
 }
